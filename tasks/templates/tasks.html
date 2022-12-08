@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="container-md">
+<h1>Tareas</h1>
+<br>
+<a  href="/tasks_completed/">
+<button class="btn btn-success"> tareas completadas</button>
+</a>
+
+{% for task in tasks %}
+<ol class="list-group">
+  <a  href="{% url 'task_detail' task.id %}">
+    <h3> {{task.user.username}}</h3>
+    <h4 class="list-group-item">{{task.title}}</h4>
+    <li class="list-group-item">{{task.description}}</li>
+    <p class="list-group-item">{{task.datecompleted}}</p>
+    {% if task.important == True %}
+    <img src="https://media.tenor.com/3GvYBpL_LwcAAAAC/extremely-important-anubhav-roy.gif" alt="FlakoGuN" height="100" />
+
+    {% else %}
+    <img src="https://media.tenor.com/XVaszZz910kAAAAM/its-not-important-glenn-youngkin.gif" alt="FlakoGuN" height="100" />
+
+    </br>
+    {% endif %}
+  </a>
+  </ol>
+{% endfor %}
+
+</div>
+    {% endblock%}
